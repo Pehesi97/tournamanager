@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 
 var TournamentSchema = new mongoose.Schema({ 
-    name: String
+    name: String,
+    type: Number,
+    game: String,
+    startDate: Date,
+    endDate: Date
 }, {
     discriminatorKey: 'kind'
 });
