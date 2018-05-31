@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('tournamanager:server');
-var http = require('http');
+import app from '../app';
+import http from 'http';
+
+import debug from 'debug';
+var debug = debug('tournamanager:server');
 
 /**
  * Get port from environment and store in Express.
@@ -89,4 +91,4 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-module.exports = server
+export default server

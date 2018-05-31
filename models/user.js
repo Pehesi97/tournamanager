@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+import Mongoose from 'mongoose';
 
-var UserSchema = new mongoose.Schema({ 
+var UserSchema = new Mongoose.Schema({ 
     registered: Boolean,
     email: String,
     phone: String,
@@ -9,4 +9,4 @@ var UserSchema = new mongoose.Schema({
     nickName: String
 });
 
-var User = mongoose.model('User', UserSchema);
+var User = Mongoose.model('User', UserSchema);

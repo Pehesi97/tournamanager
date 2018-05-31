@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+import Mongoose from 'mongoose';
 
-var TournamentSchema = new mongoose.Schema({ 
+var TournamentSchema = new Mongoose.Schema({ 
     name: String,
     type: Number,
     game: String,
@@ -10,13 +10,13 @@ var TournamentSchema = new mongoose.Schema({
     discriminatorKey: 'kind'
 });
 
-var Tournament = mongoose.model('Tournament', TournamentSchema);
+var Tournament = Mongoose.model('Tournament', TournamentSchema);
 
-var TeamTournament = Tournament.discriminator('TeamTournament', new mongoose.Schema({
-    competitors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }],
+var TeamTournament = Tournament.discriminator('TeamTournament', new Mongoose.Schema({
+    competitors: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'Team' }],
 
 }));
 
-var UserTournament = Tournament.discriminator('UserTournament', new mongoose.Schema({
-    competitors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+var UserTournament = Tournament.discriminator('UserTournament', new Mongoose.Schema({
+    competitors: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'User' }],
 }));
