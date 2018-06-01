@@ -1,4 +1,4 @@
-import Mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
 var UserSchema = new Mongoose.Schema({ 
     registered: Boolean,
