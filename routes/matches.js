@@ -3,18 +3,19 @@ var express = require('express');
 
 var router = express.Router();
 
-var Tournament = require('../models/tournament');
+var MatchResult = require('../models/matchResult');
+var Match = require('../models/match');
 
 /* READ - All */
 router.get('/', function(req, res, next) {
-	Tournament.find({}, function(err, docs) {        
+	Match.find({}, function(err, docs) {        
         res.status(200).json(docs);
     });
 });
 
 /* READ */
 router.get('/:id', function(req, res, next) {
-	Tournament.findById(req.params.id, function(err, doc) {
+	Match.findById(req.params.id, function(err, doc) {
 		if(err)
 			return res.status(500).send(err.message);
 		
@@ -27,12 +28,12 @@ router.get('/:id', function(req, res, next) {
 
 /* UPDATE */
 router.put('/:id', function(req, res, next) {
-
+    Mat
 });
 
 /* CREATE */
 router.post('/', function(req, res, next) {
-	Tournament.create(req.body, function(err, doc) {
+	Match.create(req.body, function(err, doc) {
 		if(err)
 			 return res.status(400).send(err.message);
 
@@ -42,7 +43,7 @@ router.post('/', function(req, res, next) {
 
 /* DELETE */
 router.delete('/:id', function(req, res, next) {
-	Tournament.deleteOne({ _id: req.params.id }, function(err) {
+	Match.deleteOne({ _id: req.params.id }, function(err) {
 		if (err)
 			return res.status(404).json({});
 		

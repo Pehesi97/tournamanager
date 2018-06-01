@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var tournaments = require('./routes/tournaments')
+var tournaments = require('./routes/tournaments');
+var matches = require('./routes/matches');
 
 var app = express();
 
@@ -28,6 +29,7 @@ mongoose.connect('mongodb://tournamanager:tournamanager@ds015924.mlab.com:15924/
 
 app.use('/users', users);
 app.use('/tournaments', tournaments);
+app.use('/matches', matches);
 app.use('/', index);
 
 // catch 404 and forward to error handler

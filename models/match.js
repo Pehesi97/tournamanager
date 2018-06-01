@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 
+var MatchResult = mongoose.model('MatchResult').schema;
+
 var MatchSchema = new mongoose.Schema({
     startDate: Date,
     endDate: Date,
-    results: [[String]],
+    results: [MatchResult],
     admins: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 }, {
     discriminatorKey: 'kind'
