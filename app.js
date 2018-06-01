@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var tournaments = require('./routes/tournaments')
 
 var app = express();
 
@@ -19,8 +20,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+mongoose.connect('mongodb://tournamanager:tournamanager@ds015924.mlab.com:15924/tournamanager').then(() => {
+  console.log('connected to mongoDB');
+}, err => {
+  console.log('error connecting to mongoDB');
+});
+
 app.use('/users', users);
+app.use('/tournaments', tournaments);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,7 +45,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(res.locals);
 });
 
 module.exports = app;

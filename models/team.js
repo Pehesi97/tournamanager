@@ -7,4 +7,4 @@ var TeamSchema = new mongoose.Schema({
     admins: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
-var Team = mongoose.model('Team', TeamSchema);
+module.exports = mongoose.model('Team', TeamSchema);

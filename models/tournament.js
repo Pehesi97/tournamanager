@@ -2,8 +2,10 @@ var mongoose = require('mongoose');
 
 var TournamentSchema = new mongoose.Schema({ 
     name: String,
-    type: Number,
+    type: { type: String, enum: ['Mata mata', 'Chaves'] },
     game: String,
+    matches: { type: mongoose.Schema.Types.ObjectId, ref: 'Match' },
+    platform: String,
     startDate: Date,
     endDate: Date
 }, {
@@ -20,3 +22,5 @@ var TeamTournament = Tournament.discriminator('TeamTournament', new mongoose.Sch
 var UserTournament = Tournament.discriminator('UserTournament', new mongoose.Schema({
     competitors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 }));
+
+module.exports = Tournament;

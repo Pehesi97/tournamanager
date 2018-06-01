@@ -9,4 +9,4 @@ var UserSchema = new mongoose.Schema({
     nickName: String
 });
 
-var User = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
