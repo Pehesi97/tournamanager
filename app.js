@@ -27,9 +27,9 @@ mongoose.connect('mongodb://tournamanager:tournamanager@ds015924.mlab.com:15924/
   console.log('error connecting to mongoDB');
 });
 
-app.use('/users', users);
-app.use('/tournaments', tournaments);
-app.use('/matches', matches);
+app.use('/api/users', users);
+app.use('/api/tournaments', tournaments);
+app.use('/api/matches', matches);
 app.use('/', index);
 
 // catch 404 and forward to error handler

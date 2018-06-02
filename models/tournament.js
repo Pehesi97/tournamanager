@@ -7,20 +7,11 @@ var TournamentSchema = new mongoose.Schema({
     matches: { type: mongoose.Schema.Types.ObjectId, ref: 'Match' },
     platform: String,
     startDate: Date,
-    endDate: Date
-}, {
-    discriminatorKey: 'kind'
+    endDate: Date,
+    competitorType: String,
+    competitors: [{ type: mongoose.Schema.Types.ObjectId, refPath: 'competitorType' }]
 });
 
 var Tournament = mongoose.model('Tournament', TournamentSchema);
-
-var TeamTournament = Tournament.discriminator('TeamTournament', new mongoose.Schema({
-    competitors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }],
-
-}));
-
-var UserTournament = Tournament.discriminator('UserTournament', new mongoose.Schema({
-    competitors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-}));
 
 module.exports = Tournament;

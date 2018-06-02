@@ -3,21 +3,18 @@ var express = require('express');
 
 var router = express.Router();
 
-var MatchResult = require('../models/matchResult');
-var Match = require('../models/match');
-var Team = require('../models/team');
-var User = require('../models/user');
+var Team = require('../models/Team');
 
 /* READ - All */
 router.get('/', function(req, res, next) {
-	Match.find({}, function(err, docs) {        
+	Team.find({}, function(err, docs) {        
         res.status(200).json(docs);
     });
 });
 
 /* READ */
 router.get('/:id', function(req, res, next) {
-	Match.findById(req.params.id).populate('competitors', 'name logo nickName avatar -_id').exec(function(err, doc) {
+	Team.findById(req.params.id, function(err, doc) {
 		if(err)
 			return res.status(500).send(err.message);
 		
@@ -30,17 +27,12 @@ router.get('/:id', function(req, res, next) {
 
 /* UPDATE */
 router.put('/:id', function(req, res, next) {
-    Match.findByIdAndUpdate(req.params.id, req.body, function(err, doc) {
-		if(err)
-			return res.status(404).json({});
 
-		res.status(200).json(doc);
-	});
 });
 
 /* CREATE */
 router.post('/', function(req, res, next) {
-	Match.create(req.body, function(err, doc) {
+	Team.create(req.body, function(err, doc) {
 		if(err)
 			 return res.status(400).send(err.message);
 
@@ -50,7 +42,7 @@ router.post('/', function(req, res, next) {
 
 /* DELETE */
 router.delete('/:id', function(req, res, next) {
-	Match.deleteOne({ _id: req.params.id }, function(err) {
+	Team.deleteOne({ _id: req.params.id }, function(err) {
 		if (err)
 			return res.status(404).json({});
 		
