@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('*', function(req, res, next) {
-	res.sendFile('index.html' , { root: path.join(__dirname, '../public') }	);
+	res.sendFile('index.html' , { root: path.join(__dirname, '../frontend/build') }	);
 });
 
 module.exports = router;
