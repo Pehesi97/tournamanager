@@ -6,7 +6,8 @@ var UserSchema = new mongoose.Schema({
     phone: String,
     name: String,
     avatar: String,
-    nickName: String
+    nickName: String,
+    backgroundImage: String
 });
 
 module.exports = mongoose.model('User', UserSchema);
