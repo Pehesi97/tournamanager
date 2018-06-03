@@ -3,7 +3,6 @@ import React, { Component } from "react";
 
 /* Material design import */
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { createMuiTheme } from '@material-ui/core/styles';
 
 /* Parts imports */
 import MiniDrawer from './parts/Template';
