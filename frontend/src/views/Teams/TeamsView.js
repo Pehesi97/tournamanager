@@ -32,6 +32,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
+
+/* Dialog */
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 
 function TabContainer(props) {
     return (
@@ -44,14 +54,8 @@ function TabContainer(props) {
   TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
   };
-  
-  const styles = theme => ({
-    root: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
-    },
-  });
 
+/* Esta funcao é a que gera o numero de membros, tem uqe ser implementada com a API */
   function generate(element) {
     return [0, 1, 2].map(value =>
       React.cloneElement(element, {
@@ -59,11 +63,24 @@ function TabContainer(props) {
       }),
     );
   }
+/* Define as propriedades da transicao */
+  function Transition(props) {
+    return <Slide direction="up" {...props} />;
+  }
 
 class TeamsView extends Component {
     state = {
         value: 0,
+        diagOpen: false,
     };
+    
+      handleClickOpen = () => {
+        this.setState({ diagOpen: true });
+      };
+    
+      handleClose = () => {
+        this.setState({ diagOpen: false });
+      };
 
     constructor(props) {
         super(props);
@@ -95,7 +112,6 @@ class TeamsView extends Component {
                                     >
                                     <Tab label="Sumário" icon={<InfoIcon />} />
                                     <Tab label="Lista de Membros" icon={<ViewListIcon />} />
-                                    <Tab label="Contato" icon={<ContactMailIcon />} />
                                 </Tabs>
                                 {value === 0 && <TabContainer>
                                     <Grid container spacing={8}>
@@ -105,11 +121,24 @@ class TeamsView extends Component {
                                         />
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <Typography Fade variant="headline" component="h3">
+                                        <Typography Slide variant="headline" component="h3">
                                             Nome do Time
                                         </Typography>
                                         <Typography Fade component="p">
                                             Nome Admins
+                                        </Typography>
+                                        <br/>
+                                        <Typography Slide variant="headline" component="h3">
+                                            Contato
+                                        </Typography>
+                                        <Typography Fade component="p">
+                                            <b>Email:</b> wizard@abc.com.br
+                                        </Typography>
+                                        <Typography Fade component="p">
+                                            <b>Twitter:</b> @WizardTeam
+                                        </Typography>
+                                        <Typography Fade component="p">
+                                            <b>Facebook:</b> WizardLOL
                                         </Typography>
                                     </Grid>
                                     </Grid>
@@ -122,38 +151,92 @@ class TeamsView extends Component {
                                     <List>
                                         {generate(
                                         <ListItem>
-                                            <ListItemAvatar>
-                                            <Avatar>
+                                            <ListItemIcon>
+                                            <Tooltip id="tooltip-icon" title="Contato">
+                                                <IconButton onClick={this.handleClickOpen} aria-label="Contato">
                                                 <ContactMailIcon />
-                                            </Avatar>
-                                            </ListItemAvatar>
+                                                </IconButton>
+                                            </Tooltip>
+                                            </ListItemIcon>
                                             <ListItemText
                                             primary="Jose das cove"
                                             />
                                             <ListItemSecondaryAction>
-                                            <IconButton aria-label="Delete">
+                                            <Tooltip id="tooltip-icon" title="Delete">
+                                            <IconButton disabled aria-label="Delete">
                                                 <DeleteIcon />
                                             </IconButton>
+                                            </Tooltip>
                                             </ListItemSecondaryAction>
                                         </ListItem>,
                                         )}
                                     </List>
                                     </div>
-                                </TabContainer>}
-                                {value === 2 && <TabContainer>
-                                    <Typography Fade component="p">
-                                        <b>Email:</b> wizard@abc.com.br
+                                    <br/>
+                                    <Typography variant="title">
+                                        Reservas
                                     </Typography>
-                                    <Typography Fade component="p">
-                                        <b>Twitter:</b> @WizardTeam
-                                    </Typography>
-                                    <Typography Fade component="p">
-                                        <b>Facebook:</b> WizardLOL
-                                    </Typography>
+                                    <div>
+                                    <List>
+                                        {generate(
+                                        <ListItem>
+                                            <ListItemIcon>
+                                            <Tooltip id="tooltip-icon" title="Contato">
+                                                <IconButton onClick={this.handleClickOpen} aria-label="Contato">
+                                                <ContactMailIcon />
+                                                </IconButton>
+                                            </Tooltip>
+                                            </ListItemIcon>
+                                            <ListItemText
+                                            primary="Jose dos alface"
+                                            />
+                                            <ListItemSecondaryAction>
+                                            <Tooltip id="tooltip-icon" title="Delete">
+                                            <IconButton disabled aria-label="Delete">
+                                                <DeleteIcon />
+                                            </IconButton>
+                                            </Tooltip>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>,
+                                        )}
+                                    </List>
+                                    </div>
+                                    <Dialog
+                                    open={this.state.diagOpen}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={this.handleClose}
+                                    aria-labelledby="alert-dialog-slide-title"
+                                    aria-describedby="alert-dialog-slide-description"
+                                    >
+                                    <DialogTitle id="alert-dialog-slide-title">
+                                        {"Informações do Membro"}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                        <b>Nome:</b> João Lucas da Silva Ribeiro
+                                        </DialogContentText>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                        <b>NickName:</b> jlribeiro-BR
+                                        </DialogContentText>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                        <b>Email:</b> joaolucas.jlsr@gmail.com
+                                        </DialogContentText>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                        <b>Registrado:</b> Sim
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button disabled onClick={this.handleClose} color="primary">
+                                        Editar
+                                        </Button>
+                                        <Button onClick={this.handleClose} color="primary">
+                                        Close
+                                        </Button>
+                                    </DialogActions>
+                                    </Dialog>
                                 </TabContainer>}
                             </Paper>
-                        </Grid>
-                        <Grid item xs={12}>
                         </Grid>
                     </Grid>
                 </div>
