@@ -7,6 +7,9 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 /* Parts imports */
 import MiniDrawer from './parts/Template';
 
+/* Fontface imports */
+import 'typeface-roboto';
+
 class Main extends Component {
   render() {
     return (

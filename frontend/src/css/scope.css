@@ -4,3 +4,7 @@ body {
     border: 0px;
     background-color: #fafafa
 }
+
+a {
+    text-decoration: none;
+}
