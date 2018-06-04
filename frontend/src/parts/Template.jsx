@@ -26,6 +26,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import StatisticsView from './../views/Statistics/StatisticsView';
 import TeamsView from './../views/Teams/TeamsView';
 import TournamentsView from './../views/Tournaments/TournamentsView';
+import TournamentCreationView from './../views/Tournaments/TournamentCreationView';
 
 const drawerWidth = 240;
 
@@ -150,6 +151,7 @@ class MiniDrawer extends React.Component {
 						<div className={classes.toolbar} />
 						<div id="spa-content">
 							<Route exact path="/tournaments" component={TournamentsView} />
+							<Route exact path="/tournaments/new" component={TournamentCreationView} />
 							<Route exact path="/teams" component={TeamsView} />
 							<Route exact path="/statistics" component={StatisticsView} />
 						</div>
