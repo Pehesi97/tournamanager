@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 /* READ */
 router.get('/:id', function(req, res, next) {
-	Match.findById(req.params.id).populate('competitors', 'name logo nickName avatar -_id').exec(function(err, doc) {
+	Match.findById(req.params.id).populate('competitors', 'name logo nickName avatar').exec(function(err, doc) {
 		if(err)
 			return res.status(500).send(err.message);
 		

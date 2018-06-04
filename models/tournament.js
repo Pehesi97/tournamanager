@@ -4,6 +4,7 @@ var TournamentSchema = new mongoose.Schema({
     name: String,
     type: { type: String, enum: ['Mata mata', 'Chaves'] },
     game: String,
+    publishImage: String,
     matches: { type: mongoose.Schema.Types.ObjectId, ref: 'Match' },
     platform: String,
     startDate: Date,
