@@ -24,6 +24,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 /* View Imports */
 import StatisticsView from './../views/Statistics/StatisticsView';
+import TeamsList from './../views/Teams/TeamsList';
 import TeamsView from './../views/Teams/TeamsView';
 import TournamentsView from './../views/Tournaments/TournamentsView';
 import TournamentCreationView from './../views/Tournaments/TournamentCreationView';
@@ -152,7 +153,8 @@ class MiniDrawer extends React.Component {
 						<div id="spa-content">
 							<Route exact path="/tournaments" component={TournamentsView} />
 							<Route exact path="/tournaments/new" component={TournamentCreationView} />
-							<Route exact path="/teams" component={TeamsView} />
+							<Route exact path="/teams/view" component={TeamsView} />
+							<Route exact path="/teams" component={TeamsList} />
 							<Route exact path="/statistics" component={StatisticsView} />
 						</div>
 					</main>

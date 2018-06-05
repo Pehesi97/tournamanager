@@ -20,16 +20,13 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 /* Image */
 import Image from 'material-ui-image'
 import Typography from '@material-ui/core/Typography';
-import { AppBar } from '@material-ui/core';
 
 /* List */
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -94,7 +91,6 @@ class TeamsView extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { value } = this.state;
         return (
             <Fade in={true}>
