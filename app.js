@@ -10,6 +10,7 @@ var cors = require('cors');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var tournaments = require('./routes/tournaments');
+var statistics = require('./routes/statistics');
 var matches = require('./routes/matches');
 
 var app = express();
@@ -31,6 +32,7 @@ mongoose.connect('mongodb://tournamanager:tournamanager@ds015924.mlab.com:15924/
 
 app.use('/api/users', users);
 app.use('/api/tournaments', tournaments);
+app.use('/api/statistics', statistics);
 app.use('/api/matches', matches);
 app.use('/', index);
 
